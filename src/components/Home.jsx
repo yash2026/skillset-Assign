@@ -1,12 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
+
+  const handleSearchSkills = () => {
+    navigate("/user-skills");
+  };
+
+  const handleHomeNavigation = () => {
+    navigate("/home");
+  };
+
   return (
-    <div className="bg-[#f8f4f3] h-[100%]">
+    <div className="bg-[#f8f4f3] h-[100vh] flex flex-col">
       <header>
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="#" className="-m-1.5 p-1.5" onClick={handleHomeNavigation}>
               <span className="sr-only">Skill Set</span>
               <img
                 className="h-8 w-auto"
@@ -15,52 +30,25 @@ const Home = () => {
               />
             </a>
           </div>
-          <div className=" lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
+          <div className="lg:flex lg:flex-1 lg:justify-end">
+            <button
+              onClick={handleLogout}
               className="text-base font-semibold leading-6 text-gray-900"
             >
               Log out <span aria-hidden="true">&rarr;</span>
-            </a>
+            </button>
           </div>
         </nav>
       </header>
-      <div className="flex justify-center h-screen my-5">
-        <div className="w-full max-w-md md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
-          <form className="mx-auto ">
-            <label
-              for="default-search"
-              className="mb-2 text-sm font-medium text-gray-800 sr-only dark:text-white "
-            >
-              Search
-            </label>
-            <div className="relative ">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
-                <svg
-                  className="w-4 h-4 text-gray-700 dark:text-gray-600 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </div>
-              <input
-                type="search"
-                id="default-search"
-                className="block w-full p-4 ps-10 text-sm text-gray-800 border border-gray-300 rounded-lg bg-gray-50 "
-                placeholder="Search skills to add..."
-                required
-              />
-            </div>
-          </form>
+      <div className="flex-grow flex items-center justify-center">
+        <div className="relative inline-flex group">
+          <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+          <button
+            onClick={handleSearchSkills}
+            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+          >
+            Search Your Skills
+          </button>
         </div>
       </div>
     </div>
