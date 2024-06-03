@@ -22,8 +22,10 @@ export const loginUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuthenticated: false,
-    user: null,
+    isAuthenticated: !!localStorage.getItem("userData"),
+    user: localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData"))
+      : null,
     loading: false,
     error: null,
   },
@@ -31,6 +33,7 @@ const authSlice = createSlice({
     logout(state) {
       state.isAuthenticated = false;
       state.user = null;
+      localStorage.removeItem("userData");
     },
   },
   extraReducers: (builder) => {
